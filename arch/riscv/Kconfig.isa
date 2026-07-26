@@ -363,15 +363,3 @@ config RISCV_ISA_EXT_ZICFILP
 	  The Zicfilp extension introduces landing pad (lpad) instructions to enforce
 	  forward-edge control-flow integrity, ensuring indirect calls and jumps target
 	  valid, predefined locations.
-
-
-
-config RISCV_ISA_EXT_ZICFISS
-	bool
-	default y if $(dt_compat_all_has_prop,riscv,$(RISCV_ISA_EXT_PROP),zicfiss)
-	help
-	  (Zicfiss) - Zicfiss Extension for Shadow Stack
-
-	  The Zicfiss extension introduces shadow stack push/check instructions (sspush
-	  and sspopchk) to enforce backward-edge control-flow integrity, protecting function
-	  return addresses against memory corruption attacks.

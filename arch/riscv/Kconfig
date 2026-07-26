@@ -468,19 +468,6 @@ config RISCV_LANDING_PADS
 	  environment registers to enforce landing pad (lpad) instructions at
 	  indirect branch targets.
 
-config RISCV_SHADOW_STACK
-	bool "Enable Shadow Stack Protection (Zicfiss)"
-	depends on RISCV_ISA_EXT_ZICFISS
-	depends on RISCV_PMP
-	select ARCH_HAS_HW_SHADOW_STACK
-	select THREAD_STACK_INFO
-	default y
-	help
-	  Enables backward-edge control-flow integrity using shadow stack
-	  push/check instructions. Requires Physical Memory Protection (RISCV_PMP)
-	  to guarantee memory isolation over shadow stack regions. Saves and restores
-	  the Shadow Stack Pointer (ssp) during thread context switches.
-
 endif # RISCV_CFI
 
 config PMP_STACK_GUARD
