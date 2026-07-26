@@ -10,6 +10,7 @@
 #include <zephyr/irq.h>
 #include <zephyr/sys/atomic.h>
 #include <zephyr/arch/riscv/irq.h>
+#include <zephyr/arch/riscv/cfi.h>
 #include <zephyr/drivers/pm_cpu_ops.h>
 #include <zephyr/platform/hooks.h>
 #if defined(CONFIG_RISCV_IMSIC)
@@ -75,6 +76,9 @@ void arch_secondary_cpu_init(int hartid)
 #ifdef CONFIG_RISCV_PMP
 	z_riscv_pmp_init();
 #endif
+#ifdef CONFIG_RISCV_CFI
+	z_riscv_cfi_init();
+#endif 
 #ifdef CONFIG_CUSTOM_STACK_GUARD
 	z_riscv_custom_stack_guard_init();
 #endif /* CONFIG_CUSTOM_STACK_GUARD */

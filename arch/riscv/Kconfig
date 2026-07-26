@@ -450,6 +450,15 @@ config PMP_UNLOCK_ROM_FOR_DEBUG
 
 endif #RISCV_PMP
 
+config RISCV_CFI
+	bool "Control-Flow Integrity (CFI)"
+	depends on RISCV_ISA_EXT_ZICFILP || RISCV_ISA_EXT_ZICFISS
+	help
+	  Enable hardware-enforced Control-Flow Integrity (CFI) using
+	  RISC-V Zicfilp (Landing Pads) and/or Zicfiss (Shadow Stack) extensions.
+
+if RISCV_CFI
+
 config RISCV_LANDING_PADS
 	bool "Enable Landing Pad Enforcement (Zicfilp)"
 	depends on RISCV_ISA_EXT_ZICFILP
@@ -465,11 +474,14 @@ config RISCV_SHADOW_STACK
 	depends on RISCV_PMP
 	select ARCH_HAS_HW_SHADOW_STACK
 	select THREAD_STACK_INFO
+	default y
 	help
 	  Enables backward-edge control-flow integrity using shadow stack
 	  push/check instructions. Requires Physical Memory Protection (RISCV_PMP)
 	  to guarantee memory isolation over shadow stack regions. Saves and restores
 	  the Shadow Stack Pointer (ssp) during thread context switches.
+
+endif # RISCV_CFI
 
 config PMP_STACK_GUARD
 	bool

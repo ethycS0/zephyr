@@ -17,6 +17,7 @@
 
 #include <kernel_arch_data.h>
 #include <pmp.h>
+#include <cfi.h>
 
 #include <zephyr/platform/hooks.h>
 
@@ -65,6 +66,9 @@ static ALWAYS_INLINE void arch_kernel_init(void)
 #endif
 #if defined(CONFIG_RISCV_PMP) && !defined(CONFIG_RISCV_S_MODE)
 	z_riscv_pmp_init();
+#endif
+#if defined(CONFIG_RISCV_CFI)
+	z_riscv_cfi_init();
 #endif
 #ifdef CONFIG_CUSTOM_STACK_GUARD
 	z_riscv_custom_stack_guard_init();
