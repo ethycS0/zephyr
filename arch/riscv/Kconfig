@@ -454,8 +454,8 @@ config RISCV_CFI
 	bool "Control-Flow Integrity (CFI)"
 	depends on RISCV_ISA_EXT_ZICFILP || RISCV_ISA_EXT_ZICFISS
 	help
-	  Enable hardware-enforced Control-Flow Integrity (CFI) using
-	  RISC-V Zicfilp (Landing Pads) and/or Zicfiss (Shadow Stack) extensions.
+	  Enable hardware-enforced Control-Flow Integrity (CFI) using RISC-V
+	  Zicfilp (Landing Pads) and/or Zicfiss (Shadow Stack) extensions.
 
 if RISCV_CFI
 
@@ -464,7 +464,7 @@ config RISCV_LANDING_PADS
 	depends on RISCV_ISA_EXT_ZICFILP
 	default y
 	help
-	  Enables forward-edge control-flow integrity by configuring M-mode/S-mode
+	  Enables forward-edge control-flow integrity by configuring
 	  environment registers to enforce landing pad (lpad) instructions at
 	  indirect branch targets.
 

@@ -67,7 +67,7 @@ static ALWAYS_INLINE void arch_kernel_init(void)
 #if defined(CONFIG_RISCV_PMP) && !defined(CONFIG_RISCV_S_MODE)
 	z_riscv_pmp_init();
 #endif
-#if defined(CONFIG_RISCV_CFI)
+#if defined(CONFIG_RISCV_CFI) && !defined(CONFIG_RISCV_S_MODE)
 	z_riscv_cfi_init();
 #endif
 #ifdef CONFIG_CUSTOM_STACK_GUARD

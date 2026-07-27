@@ -160,6 +160,19 @@ aa_loop:
 	li t0, (MIP_SSIP | MIP_STIP | MIP_SEIP)
 	csrw mideleg, t0
 
+	/* Boot Core landing pad initialization */
+#ifdef CONFIG_RISCV_LANDING_PADS
+#
+	/* Initialize landing pads in U-mode */
+#ifdef CONFIG_USERSPACE
+	li t0, SENVCFG_LPE
+	csrw senvcfg, t0
+#endif
+	/* Initialize landing pads in S-mode */
+	li t0, MENVCFG_LPE
+	csrw menvcfg, t0
+#endif
+
 	/* PMP entry 0: NAPOT, RWX, covers all memory so S-mode can
 	* access everything
 	*/

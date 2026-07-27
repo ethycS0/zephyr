@@ -1,12 +1,17 @@
-
 #include <zephyr/kernel.h>
 #include <zephyr/arch/cfi.h>
+#include <zephyr/arch/riscv/csr.h>
 
 void z_riscv_landing_pad_init(void)
 {
-	csr_set(mseccfg, 0x400);
-#ifdef CONFIG_RISCV_S_MODE
-	csr_set(menvcfg, 0x2);
+#ifndef CONFIG_RISCV_S_MODE
+	csr_set(mseccfg, MSECCFG_MLPE);
+#else
+	csr_set(menvcfg, MENVCFG_LPE);
+#endif
+
+#ifdef CONFIG_USERSPACE
+	csr_set(senvcfg, SENVCFG_LPE);
 #endif
 }
 
